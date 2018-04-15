@@ -9,6 +9,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use PhpParser\Error;
+use PhpParser\NodeDumper;
+use PhpParser\ParserFactory;
+
 $prog = new Application('PHP Code Style Checker', '0.0.0');
 
 $prog
@@ -16,6 +20,22 @@ $prog
     ->addArgument('path', InputArgument::OPTIONAL, 'Folder or file name.')
     ->setCode(function (InputInterface $input, OutputInterface $output)
     {
-        //
+        try {
+            $path = __DIR__.'/'.$input->getArgument('path');
+
+            if (is_dir($path)) {
+                // scan files in folders
+            }
+
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+
+            $ast = $parser->parse(file_get_contents($path));
+        } catch (Error $error) {
+            $error->getMessage() . PHP_EOL;
+            return;
+        }
+
+        $dumper = new NodeDumper;
+        echo $dumper->dump($ast) . PHP_EOL;
     })
     ->getApplication()->run();
