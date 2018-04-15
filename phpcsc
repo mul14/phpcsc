@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+$prog = new Application('PHP Code Style Checker', '0.0.0');
+
+$prog
+    ->register('run')
+    ->addArgument('path', InputArgument::OPTIONAL, 'Folder or file name.')
+    ->setCode(function (InputInterface $input, OutputInterface $output)
+    {
+        //
+    })
+    ->getApplication()->run();

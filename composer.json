@@ -1,0 +1,15 @@
+{
+    "name": "nasution/phpcsc",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mulia Arifandi Nasution",
+            "email": "mul14.net@gmail.com"
+        }
+    ],
+    "require": {
+        "nikic/php-parser": "^4.0",
+        "symfony/console": "^4.0"
+    },
+    "bin": "phpcsc"
+}
